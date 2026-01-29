@@ -1,0 +1,33 @@
+###
+# @name login
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "jk",
+    "password": "sala"
+}
+
+###
+GET http://localhost:3000/data
+Authorization: Bearer {{login.response.body.access_token}}
+
+
+###
+GET http://localhost:3000/data/1
+Authorization: Bearer {{login.response.body.access_token}}
+
+###
+POST http://localhost:3000/data
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.access_token}}
+
+{
+    "id": "5",
+    "Firstname": "Donald",
+    "Surname": "Duck",
+    "userid": "jk"
+}
+
+###
+GET http://localhost:3000/doc
