@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {getAllData, getDataById, addData} from '../db/db.js';
+import {getAllData, getDataById, addData, deleteDataById, updateData} from '../db/db.js';
 let router = Router()
 
 router.get('/', async (req, res) => {
@@ -20,6 +20,38 @@ router.post('/', async (req, res) => {
             res.json(req.body);
         else
             res.status(500).json({"error": "unknown database error"})
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+        let result = await deleteDataById(req.params.id);
+        if(result && result.affectedRows > 0) {
+            res.json({"message": "record deleted successfully"});
+        } else {
+            res.status(404).json({"error": "record not found"});
+        }
+    } catch (error) {
+        console.error("Delete error:", error);
+        res.status(500).json({"error": "database error"})
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    try {
+        let result = await updateData({
+            id: req.params.id,
+            Firstname: req.body.Firstname,
+            Surname: req.body.Surname
+        });
+        if(result && result.affectedRows > 0) {
+            res.json({"message": "record updated successfully"});
+        } else {
+            res.status(404).json({"error": "record not found"});
+        }
+    } catch (error) {
+        console.error("Update error:", error);
+        res.status(500).json({"error": "database error"})
     }
 })
 

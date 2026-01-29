@@ -36,8 +36,16 @@ const addData = async ( {id, Firstname, Surname, userid} ) =>
     [id, Firstname, Surname, userid]
   )
 
+const deleteDataById = async ( id ) =>
+  execute('DELETE FROM data WHERE id = ?', [id])
+
+const updateData = async ( {id, Firstname, Surname} ) =>
+  execute('UPDATE data SET Firstname = ?, Surname = ? WHERE id = ?', [Firstname, Surname, id])
+
 export {
   addData,
+  deleteDataById,
+  updateData,
   findUser,
   getAllData,
   getDataById,

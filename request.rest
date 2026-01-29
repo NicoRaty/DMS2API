@@ -10,17 +10,16 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/data
-Authorization: Bearer {{login.response.body.access_token}}
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImprIiwiaWF0IjoxNzY5NzA1MTM5LCJleHAiOjE3Njk3MDg3Mzl9.XQY2z7c3VDLiH5XAQHcbACkoxkT7rjcuk-pbLgni84E
 
 ###
 GET http://localhost:3000/data/1
-Authorization: Bearer {{login.response.body.access_token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImprIiwiaWF0IjoxNzY5NzA1MTM5LCJleHAiOjE3Njk3MDg3Mzl9.XQY2z7c3VDLiH5XAQHcbACkoxkT7rjcuk-pbLgni84E
 
 ###
 POST http://localhost:3000/data
 Content-Type: application/json
-Authorization: Bearer {{login.response.body.access_token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImprIiwiaWF0IjoxNzY5NzA1MTM5LCJleHAiOjE3Njk3MDg3Mzl9.XQY2z7c3VDLiH5XAQHcbACkoxkT7rjcuk-pbLgni84E
 
 {
     "id": "5",
@@ -31,3 +30,17 @@ Authorization: Bearer {{login.response.body.access_token}}
 
 ###
 GET http://localhost:3000/doc
+
+###
+DELETE http://localhost:3000/data/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImprIiwiaWF0IjoxNzY5NzA1MTM5LCJleHAiOjE3Njk3MDg3Mzl9.XQY2z7c3VDLiH5XAQHcbACkoxkT7rjcuk-pbLgni84E
+
+###
+PUT http://localhost:3000/data/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImprIiwiaWF0IjoxNzY5NzA1MTM5LCJleHAiOjE3Njk3MDg3Mzl9.XQY2z7c3VDLiH5XAQHcbACkoxkT7rjcuk-pbLgni84E
+
+{
+    "Firstname": "Mickey",
+    "Surname": "Mouse"
+}
