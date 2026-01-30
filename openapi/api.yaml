@@ -30,12 +30,36 @@ tags:
       url: https://m.karelia.fi
 
 paths:
+  /login:
+    post:
+      summary: User login
+      description: Authenticates a user and returns a JWT access token
+      tags:
+        - Authentication
+      security: []   # override global bearerAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Missing credentials
+        '401':
+          description: Login failed
   /data:
     get:
       tags:
         - Sample dataset
       summary: Returns a dataset
-      description: Returns a dataset with something more blaah...
+      description: Returns a dataset with something more specific...
       responses:
         '200':
           description: Successful operation
@@ -45,27 +69,55 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Data'
-        '415':
-          description: Unsupported media type
-
 components:
   schemas:
+    LoginRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          example: jk
+        password:
+          type: string
+          example: sala
+    LoginResponse:
+      type: object
+      required: [username, access_token, token_type, expires_in]
+      properties:
+        username:
+          type: string
+          description: The username of the logged-in user
+          example: jk
+        access_token:
+          type: string
+          description: JWT token for authentication
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        token_type:
+          type: string
+          description: Token type, always Bearer
+          example: Bearer
+        expires_in:
+          type: string
+          description: Token validity period
+          example: 1h
     Data:
       type: object
+      required: [id, forename, surname]
       properties:
         id:
           type: integer
           format: int64
-          examples:
-            - 111
+          example: 111
         forename:
           type: string
           examples:
             - Roy
-          
         surname:
           type: string
-          examples: [ Fielding ]
+          example: Fielding
 
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
