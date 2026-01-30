@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 
     let [user] = await findUser(username);
 
-    if (!user && user.password === password) {
+    if (!user && user.password !== password) {
         return res.status(401).json({ error: 'Login failed' });
     }
 

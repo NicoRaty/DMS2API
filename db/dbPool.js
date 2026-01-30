@@ -7,6 +7,8 @@ const pool = createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
+    insertIdAsNumber: true,
+    bigIntAsNumber: true,
 });
 
 export default Object.freeze({
