@@ -20,7 +20,7 @@ security:
   - bearerAuth: []
 
 servers:
-  - url: http://localhost:3000
+  - url: https://nicoratyu2404755.westeurope.cloudapp.azure.com/
   
 tags:
   - name: Sample dataset
